@@ -30,7 +30,7 @@ public class ComunicationBetweenProcess2 {
 		}
 
 		try {
-			// Esperar a que el proceso termine
+		
 			process.waitFor();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
