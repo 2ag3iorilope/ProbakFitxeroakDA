@@ -9,52 +9,49 @@ import java.util.Arrays;
 
 public class Ejecuta {
 
-    public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 
-    	// Konprobatu argumentuak sartu dituen
-        if (args.length <= 0) {
-            System.err.println("Komando bat behar duzu argumentuetan");
-            System.exit(-1); 
-        }
+		// Konprobatu argumentuak sartu dituen
+		if (args.length <= 0) {
+			System.err.println("Komando bat behar duzu argumentuetan");
+			System.exit(-1);
+		}
 
-        
-        Runtime runtime = Runtime.getRuntime();
+		Runtime runtime = Runtime.getRuntime();
 
-      
-        Process process = runtime.exec(args);
+		Process process = runtime.exec(args);
 
-    	// Erroreak lortu
-        BufferedReader berr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+		// Erroreak lortu
+		BufferedReader berr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
-      //Idatzi errorea fitxategian
-        try (FileWriter fileWriter = new FileWriter("errore.txt")) {
+		// Idatzi errorea fitxategian
+		try (FileWriter fileWriter = new FileWriter("errore.txt")) {
 
-            String line; 
+			String line;
 
-            //Erakutsi sartutako argumentuen komandoa
-            System.out.println("Errorea exekutatzerakoan " + Arrays.toString(args) + " da:");
+			// Erakutsi sartutako argumentuen komandoa
+			System.out.println("Errorea exekutatzerakoan " + Arrays.toString(args) + " da:");
 
-            
-            while ((line = berr.readLine()) != null) {
-                fileWriter.write(line + System.lineSeparator()); 
-            }
+			while ((line = berr.readLine()) != null) {
+				fileWriter.write(line + System.lineSeparator());
+			}
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-        //Erakutsi errorea.txt fitxategiaren edukia
-        System.out.println("\nErrore.txt ko edukia:");
-        try (BufferedReader fileReader = new BufferedReader(new FileReader("errore.txt"))) {
+		// Erakutsi errorea.txt fitxategiaren edukia
+		System.out.println("\nErrore.txt ko edukia:");
+		try (BufferedReader fileReader = new BufferedReader(new FileReader("errore.txt"))) {
 
-            String line;
-            while ((line = fileReader.readLine()) != null) {
-                System.out.println(line); 
-            }
+			String line;
+			while ((line = fileReader.readLine()) != null) {
+				System.out.println(line);
+			}
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-    }
+	}
 }
