@@ -3,7 +3,7 @@ package Fitxategiak;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Semeprozesua {
+public class ProcesoHijo {
     public static void main(String[] args) {
         try {
       
